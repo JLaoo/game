@@ -1,0 +1,7 @@
+How to increase FPS on OSX:
+1. Run pygame program
+2. Right click on snake icon in dock
+3. Go to options and click “Show in Finder”
+4. Finder will open and you will see the python application (mine was in the shape of a rocket).
+5. Right click the python application and click “Get Info”
+6. Check the box “Open in Low Resolution”
