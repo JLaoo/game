@@ -13,7 +13,7 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 screen_width = 1280
 screen_height = 800
 
-screen=pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
+screen=pygame.display.set_mode((screen_width, screen_height))
  
 # Text Renderer
 def text_format(message, textFont, textSize, textColor):
@@ -32,7 +32,7 @@ blue = (0, 0, 255)
 yellow = (255, 255, 0)
  
 # Game Fonts
-menu_font = "Fonts/mohave-italic.otf"
+menu_font = "fonts/mohave-italic.otf"
 
 # Game Framerate
 clock = pygame.time.Clock()
@@ -72,11 +72,11 @@ def main_menu():
 						selected = 'new_game'
 				if event.key == pygame.K_x:
 					if selected == "new_game":
-						return 0
+						return selected
 					if selected == 'load_game':
-						return 1
+						return selected
 					if selected == 'options':
-						return 2
+						return selected
 					if selected == 'exit':
 						pygame.quit()
 						quit()
@@ -112,6 +112,8 @@ def main_menu():
 		screen.blit(text_load_game, (screen_width - (load_game_rect[2] + 15), 150))
 		screen.blit(text_options, (screen_width - (options_rect[2] + 15), 220))
 		screen.blit(text_exit, (screen_width - (exit_rect[2] + 15), 290))
+
+		# Update
 		pygame.display.update()
 		clock.tick(FPS)
 
