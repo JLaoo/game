@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 import os
-
+from story import *
 # Game Initialization
 pygame.init()
 pygame.display.set_caption("Game")
@@ -127,5 +127,7 @@ while not crashed:
 		if event.type == pygame.QUIT:
 			crashed = True
 	choice = main_menu()
+	if choice == 'new_game':
+		main()
 	pygame.quit()
 	quit()
