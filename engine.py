@@ -14,13 +14,6 @@ screen_width = 1280
 screen_height = 800
 
 screen=pygame.display.set_mode((screen_width, screen_height))
- 
-# Text Renderer
-def text_format(message, textFont, textSize, textColor):
-	newFont = pygame.font.Font(textFont, textSize)
-	newText = newFont.render(message, 0, textColor)
- 
-	return newText
 
 # Colors
 white = (255, 255, 255)

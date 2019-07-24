@@ -5,3 +5,10 @@ How to increase FPS on OSX:
 4. Finder will open and you will see the python application (mine was in the shape of a rocket).
 5. Right click the python application and click “Get Info”
 6. Check the box “Open in Low Resolution”
+
+How to create sprites:
+1. Screen record (Shift+Cmd+5) sprite from here : https://gfl.zzzzz.kr/doll.php?id=20&lang=en in a 170x170 pixel box
+2. Trim outputted .mov file to exactly 1 second (sprites loop every 60 frames and are 60 FPS)
+3. Put trimmed .mov file in empty folder and run following command: ffmpeg -i movie.mov -y -f image2 -c:v png %02d.png
+4. This process returns 170x171 png files so need to crop bottom row from each file (write a script for this)
+5. Use https://onlinepngtools.com/create-transparent-png to make each .png transparent (3% match for color tones seems to work well, maybe try 2%. Use the preview transparency mask to view what becomes transparent).

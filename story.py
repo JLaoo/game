@@ -2,28 +2,19 @@ import pygame
 from pygame.locals import *
 import os
 import time
-#=====TEMPORARY=====
+from helper_functions import *
+# INITIALIZATION
 
 # Game Initialization
 pygame.init()
 pygame.display.set_caption("Game")
 
-# Center the Game Application
-os.environ['SDL_VIDEO_CENTERED'] = '1'
- 
 # Game Resolution
 screen_width = 1280
 screen_height = 800
 
 screen=pygame.display.set_mode((screen_width, screen_height))
  
-# Text Renderer
-def text_format(message, textFont, textSize, textColor):
-	newFont = pygame.font.Font(textFont, textSize)
-	newText = newFont.render(message, 0, textColor)
- 
-	return newText
-
 # Colors
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -34,7 +25,8 @@ blue = (0, 0, 255)
 yellow = (255, 255, 0)
  
 # Game Fonts
-menu_font = "fonts/Bebas.otf"
+dialogue_font = "fonts/Mohave-Italic.otf"
+name_font = "fonts/Bebas.otf"
 
 # Game Framerate
 clock = pygame.time.Clock()
@@ -44,7 +36,6 @@ FPS = 30
 textbox = pygame.image.load('images/textboxes/textbox_2.png').convert_alpha()
 textbox = pygame.transform.scale(textbox, (screen_width, screen_height))
 
-#=====TEMPORARY=====
 
 def setup():
 	global textbox
@@ -76,24 +67,26 @@ def display_text(name, string):
 		if skip:
 			screen.fill(blue)
 			screen.blit(textbox, (screen_width/2 - textbox_rect[2]/2, -10))
-			formatted_text = text_format(string, menu_font, 75, white)
-			formatted_name = text_format(name, menu_font, 30, white)
+			formatted_text = text_format(string, dialogue_font, 75, white)
+			formatted_name = text_format(name, name_font, 30, white)
 			text_rect = formatted_text.get_rect()
 			name_rect = formatted_name.get_rect()
 			screen.blit(formatted_text, (180, screen_height - 150))
 			screen.blit(formatted_name, (120, screen_height - 200))
 			pygame.display.update()
+			clock.tick(FPS)
 			break
 		text += string[i]
 		screen.fill(blue)
 		screen.blit(textbox, (screen_width/2 - textbox_rect[2]/2, -10))
-		formatted_text = text_format(text, menu_font, 75, white)
-		formatted_name = text_format(name, menu_font, 30, white)
+		formatted_text = text_format(text, dialogue_font, 75, white)
+		formatted_name = text_format(name, name_font, 30, white)
 		text_rect = formatted_text.get_rect()
 		name_rect = formatted_name.get_rect()
 		screen.blit(formatted_text, (180, screen_height - 150))
 		screen.blit(formatted_name, (120, screen_height - 200))
 		pygame.display.update()
+		clock.tick(FPS)
 		pygame.time.wait(100)
 
 	while True:
@@ -105,7 +98,7 @@ def display_text(name, string):
 				if event.key == pygame.K_x or event.key == pygame.K_z:
 					return
 
-script = [('Kevin', 'hi.....................'), ('James', 'hello.....................'), ('', 'no name! spooky!')]
+script = generate_script('story_chapters/test_script.txt')
 def main():
 	setup()
 	for line in script:
