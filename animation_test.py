@@ -41,7 +41,7 @@ file_paths.sort()
 images = []
 for path in file_paths:
 	img = pygame.image.load(path).convert_alpha()
-	img = pygame.transform.scale(img, (100, 100))
+	img = pygame.transform.scale(img, (80, 80))
 	images.append(img)
 
 image_rect = images[0].get_rect()
